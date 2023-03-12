@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../components/form/custom_form_text_field.dart';
 import '../components/form/custom_form_submit_button.dart';
 
-class LoginForm extends StatefulWidget {
+class RegisterForm extends StatefulWidget {
   TextEditingController usernameController;
   TextEditingController passwordController;
-  LoginForm(this.usernameController, this.passwordController, {super.key});
+  RegisterForm(this.usernameController, this.passwordController, {super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<RegisterForm> createState() => _RegisterFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -40,27 +40,7 @@ class _LoginFormState extends State<LoginForm> {
               obscureText: true,
               inputIcon: Icons.lock),
 
-          const SizedBox(height: 10),
-
-          // forgot password?
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/forgot_password');
-                    }),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 25),
+          const SizedBox(height: 35),
 
           CustomSubmitButton(() {
             if (_formKey.currentState!.validate()) {
@@ -68,16 +48,12 @@ class _LoginFormState extends State<LoginForm> {
                 const SnackBar(content: Text('Processing Data')),
               );
 
-              if (widget.usernameController.text == "customer" &&
-                  widget.passwordController.text == "12345") {
-                Navigator.pushNamed(context, '/landing_home');
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Invalid credentials')),
-                );
-              }
+              Navigator.pushNamed(context, '/');
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Registered Successfully')),
+              );
             }
-          }, 'Login')
+          }, 'Register')
         ],
       ),
     );

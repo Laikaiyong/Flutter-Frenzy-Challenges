@@ -6,7 +6,7 @@ class CustomFormTextField extends StatelessWidget {
   final String hintText;
   final String labelText;
   final bool obscureText;
-  final IconData inputIcon;
+  final IconData? inputIcon;
 
   const CustomFormTextField(
       {super.key,
@@ -14,7 +14,7 @@ class CustomFormTextField extends StatelessWidget {
       required this.hintText,
       required this.labelText,
       required this.obscureText,
-      required this.inputIcon});
+      this.inputIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomFormTextField extends StatelessWidget {
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
               ),
-              icon: Icon(inputIcon),
+              icon: (inputIcon != null) ? Icon(inputIcon) : null,
               hintText: hintText,
               labelText: labelText,
               focusedBorder: OutlineInputBorder(
