@@ -4,9 +4,23 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../components/custom_button.dart';
 import '../components/custom_image_square_tile.dart';
 import '../components/form/custom_text_field.dart';
+import '../forms/login_form.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _active = false;
+
+  void _handleTapboxChanged(bool newValue) {
+    setState(() {
+      _active = newValue;
+    });
+  }
 
   // text editing controllers
   final usernameController = TextEditingController();
@@ -50,43 +64,9 @@ class LoginPage extends StatelessWidget {
                 height: 25,
               ),
 
-              // username textfield
-              CustomTextField(
-                controller: usernameController,
-                hintText: 'Username',
-                obscureText: false,
-              ),
-
-              const SizedBox(height: 10),
-
-              // password textfield
-              CustomTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true,
-              ),
-
-              const SizedBox(height: 10),
-
-              // forgot password?
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 25),
-
-              // sign in button
-              CustomButton(
-                onTap: signUserIn,
+              Container(
+                margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                child: LoginForm(usernameController, passwordController),
               ),
 
               const SizedBox(height: 50),
