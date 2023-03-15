@@ -26,7 +26,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
-      body: SafeArea(
+      body: SingleChildScrollView(
+          child: SafeArea(
         child: Center(
           child: Column(
             children: [
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
 
               // not a member? register now
               Row(
@@ -132,11 +133,13 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, '/signup');
                       }),
                 ],
-              )
+              ),
+
+              const SizedBox(height: 20),
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }
